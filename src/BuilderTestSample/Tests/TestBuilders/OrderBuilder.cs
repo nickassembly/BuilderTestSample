@@ -3,9 +3,6 @@ using System;
 
 namespace BuilderTestSample.Tests.TestBuilders
 {
-   /// <summary>
-   /// Reference: https://ardalis.com/improve-tests-with-the-builder-pattern-for-test-data
-   /// </summary>
    public class OrderBuilder
    {
       private Order _order = new Order();
@@ -18,7 +15,9 @@ namespace BuilderTestSample.Tests.TestBuilders
 
       public Order Build()
       {
-         return _order;
+         var builtOrder = _order;
+         _order = new Order();
+         return builtOrder;
       }
 
       public OrderBuilder WithTestValues()
