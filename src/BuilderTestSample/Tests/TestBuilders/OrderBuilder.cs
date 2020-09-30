@@ -14,24 +14,6 @@ namespace BuilderTestSample.Tests.TestBuilders
          return this;
       }
 
-      public Order Build()
-      {
-         var builtOrder = _order;
-         _order = new Order();
-         return builtOrder;
-      }
-
-      public OrderBuilder WithTestValues()
-      {
-         _order.TotalAmount = 100m;
-
-         _order.Customer = _customerBuilder.WithTestValues(1)
-            .Address(new Address())
-            .Build();
-
-         return this;
-      }
-
       public OrderBuilder OrderAmount(decimal amount)
       {
          _order.TotalAmount = amount;
@@ -44,6 +26,23 @@ namespace BuilderTestSample.Tests.TestBuilders
          return this;
       }
 
+      public Order Build()
+      {
+         var builtOrder = _order;
+         _order = new Order();
+         return builtOrder;
+      }
+
+      public OrderBuilder WithTestValues()
+      {
+         _order.TotalAmount = 100m;
+
+         _order.Customer = _customerBuilder.WithTestValues()
+            .Address(new Address())
+            .Build();
+
+         return this;
+      }
 
    }
 }

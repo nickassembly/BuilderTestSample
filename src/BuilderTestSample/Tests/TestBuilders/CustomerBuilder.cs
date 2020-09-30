@@ -28,6 +28,12 @@ namespace BuilderTestSample.Tests.TestBuilders
          return this;
       }
 
+      public CustomerBuilder TotalPurchases(decimal totalPurchases)
+      {
+         _internalCustomer.TotalPurchases = totalPurchases;
+         return this;
+      }
+
       public CustomerBuilder Id(int id)
       {
          _id = id;
@@ -36,23 +42,15 @@ namespace BuilderTestSample.Tests.TestBuilders
 
       public Customer Build()
       {
-         Customer builtCustomer = new Customer(_id)
-         {
-            CreditRating = _internalCustomer.CreditRating,
-            HomeAddress = _internalCustomer.HomeAddress,
-            FirstName = _internalCustomer.FirstName,
-            LastName = _internalCustomer.LastName,
-            OrderHistory = _internalCustomer.OrderHistory,
-            TotalPurchases = _internalCustomer.TotalPurchases
-         };
-
+         Customer builtCustomer = _internalCustomer.WithId(_id);
          _internalCustomer = new Customer(0);
          return builtCustomer;
       }
 
-      public CustomerBuilder WithTestValues(int id)
+      public CustomerBuilder WithTestValues()
       {
-         _internalCustomer = new Customer(id)
+         _id = 100;
+         _internalCustomer = new Customer(100)
          {
             HomeAddress = new Address(),
             FirstName = "Bob",
@@ -63,5 +61,6 @@ namespace BuilderTestSample.Tests.TestBuilders
          };
          return this;
       }
+
    }
 }
