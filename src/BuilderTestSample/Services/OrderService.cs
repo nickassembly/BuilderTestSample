@@ -44,10 +44,8 @@ namespace BuilderTestSample.Services
 
       private void ValidateAddress(Address homeAddress)
       {
-         // throw InvalidAddressException unless otherwise noted
-         // create an AddressBuilder to implement the tests for these scenarios
+         if (string.IsNullOrEmpty(homeAddress.Street1)) throw new InvalidAddressException("Street 1 is required");
 
-         // TODO: street1 is required (not null or empty)
          // TODO: city is required (not null or empty)
          // TODO: state is required (not null or empty)
          // TODO: postalcode is required (not null or empty)

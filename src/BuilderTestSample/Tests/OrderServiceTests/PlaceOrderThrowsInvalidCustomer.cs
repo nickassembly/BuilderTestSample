@@ -6,11 +6,11 @@ using Xunit;
 
 namespace BuilderTestSample.Tests.OrderServiceTests
 {
-   public class OrderServicePlaceOrder : BaseOrderServiceTests
+   public class PlaceOrderThrowsInvalidCustomer : BaseOrderServiceTests
    {
 
       [Fact]
-      public void ThrowsException_GivenCustomerWithIdZero()
+      public void GivenCustomerWithIdZero()
       {
          var order = _orderBuilder
                          .WithTestValues()
@@ -21,7 +21,7 @@ namespace BuilderTestSample.Tests.OrderServiceTests
       }
 
       [Fact]
-      public void ThrowsException_GivenCustomerWithoutAddress()
+      public void GivenCustomerWithoutAddress()
       {
          Customer customer = _customerBuilder
             .WithTestValues()
@@ -33,7 +33,7 @@ namespace BuilderTestSample.Tests.OrderServiceTests
       }
 
       [Fact]
-      public void ThrowsException_GivenCustomerWithoutFullName()
+      public void GivenCustomerWithoutFullName()
       {
          Customer customer = _customerBuilder
             .WithTestValues()
@@ -45,7 +45,7 @@ namespace BuilderTestSample.Tests.OrderServiceTests
       }
 
       [Fact]
-      public void ThrowsException_GivenCustomerWithNegativeTotal()
+      public void GivenCustomerWithNegativeTotal()
       {
          Customer customer = _customerBuilder
             .WithTestValues()

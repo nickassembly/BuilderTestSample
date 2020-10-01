@@ -11,7 +11,7 @@ namespace BuilderTestSample.Tests.OrderServiceTests
     public class PlaceOrderThrowsInvalidOrder : BaseOrderServiceTests
     {
       [Fact]
-      public void ThrowsException_GivenOrderWithExistingId()
+      public void GivenOrderWithExistingId()
       {
          var order = _orderBuilder
                          .WithTestValues()
@@ -22,7 +22,7 @@ namespace BuilderTestSample.Tests.OrderServiceTests
       }
 
       [Fact]
-      public void ThrowsException_GivenOrderAmountOfZero()
+      public void GivenOrderAmountOfZero()
       {
          var order = _orderBuilder
                          .WithTestValues()
@@ -33,7 +33,7 @@ namespace BuilderTestSample.Tests.OrderServiceTests
       }
 
       [Fact]
-      public void ThrowsException_GivenOrderWithoutCustomer()
+      public void GivenOrderWithoutCustomer()
       {
          var order = _orderBuilder
                          .WithTestValues()
