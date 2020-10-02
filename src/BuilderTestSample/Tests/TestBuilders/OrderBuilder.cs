@@ -20,6 +20,13 @@ namespace BuilderTestSample.Tests.TestBuilders
          return this;
       }
 
+      public OrderBuilder BuildCustomer(Func<CustomerBuilder, CustomerBuilder> customerBuild)
+      {
+         _customerBuilder = customerBuild(_customerBuilder);
+         _order.Customer = _customerBuilder.Build();
+            return this;
+      }
+
       public OrderBuilder Customer(Customer customer)
       {
          _order.Customer = customer;
@@ -38,7 +45,6 @@ namespace BuilderTestSample.Tests.TestBuilders
          _order.TotalAmount = 100m;
 
          _order.Customer = _customerBuilder.WithTestValues()
-            .Address(new Address())
             .Build();
 
          return this;

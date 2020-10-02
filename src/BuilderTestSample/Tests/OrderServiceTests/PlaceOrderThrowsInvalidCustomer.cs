@@ -14,7 +14,7 @@ namespace BuilderTestSample.Tests.OrderServiceTests
       {
          var order = _orderBuilder
                          .WithTestValues()
-                         .Customer(_customerBuilder.WithTestValues().Id(0).Build())
+                         .BuildCustomer(cb => cb.WithTestValues().Id(0))
                          .Build();
 
          Assert.Throws<InvalidCustomerException>(() => _orderService.PlaceOrder(order));
@@ -23,11 +23,7 @@ namespace BuilderTestSample.Tests.OrderServiceTests
       [Fact]
       public void GivenCustomerWithoutAddress()
       {
-         Customer customer = _customerBuilder
-            .WithTestValues()
-            .Address(null)
-            .Build();
-         var order = _orderBuilder.WithTestValues().Customer(customer).Build();
+         var order = _orderBuilder.WithTestValues().BuildCustomer(cb => cb.WithTestValues().Address(null)).Build();
 
          Assert.Throws<InvalidCustomerException>(() => _orderService.PlaceOrder(order));
       }
@@ -35,11 +31,8 @@ namespace BuilderTestSample.Tests.OrderServiceTests
       [Fact]
       public void GivenCustomerWithoutFullName()
       {
-         Customer customer = _customerBuilder
-            .WithTestValues()
-            .FirstName(null).LastName(null)
-            .Build();
-         var order = _orderBuilder.WithTestValues().Customer(customer).Build();
+         var order = _orderBuilder.WithTestValues().BuildCustomer(cb => cb.WithTestValues()
+             .FirstName(null).LastName(null)).Build();
 
          Assert.Throws<InvalidCustomerException>(() => _orderService.PlaceOrder(order));
       }
@@ -47,11 +40,7 @@ namespace BuilderTestSample.Tests.OrderServiceTests
       [Fact]
       public void GivenCustomerWithNegativeTotal()
       {
-         Customer customer = _customerBuilder
-            .WithTestValues()
-            .TotalPurchases(-100m)
-            .Build();
-         var order = _orderBuilder.WithTestValues().Customer(customer).Build();
+         var order = _orderBuilder.WithTestValues().BuildCustomer(cb => cb.WithTestValues().TotalPurchases(-100m)).Build();
 
          Assert.Throws<InvalidCustomerException>(() => _orderService.PlaceOrder(order));
       }
