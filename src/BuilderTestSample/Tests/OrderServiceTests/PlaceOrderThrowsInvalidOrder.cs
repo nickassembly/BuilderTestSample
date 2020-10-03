@@ -8,8 +8,8 @@ using Xunit;
 
 namespace BuilderTestSample.Tests.OrderServiceTests
 {
-    public class PlaceOrderThrowsInvalidOrder : BaseOrderServiceTests
-    {
+   public class PlaceOrderThrowsInvalidOrder : BaseOrderServiceTests
+   {
       [Fact]
       public void GivenOrderWithExistingId()
       {

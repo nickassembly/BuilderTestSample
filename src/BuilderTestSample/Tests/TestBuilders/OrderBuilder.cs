@@ -43,6 +43,7 @@ namespace BuilderTestSample.Tests.TestBuilders
       public OrderBuilder WithTestValues()
       {
          _order.TotalAmount = 100m;
+         _order.Customer = _customerBuilder.WithTestValues().Build();
 
          _order.Customer = _customerBuilder.WithTestValues()
             .Build();

@@ -53,7 +53,7 @@ namespace BuilderTestSample.Tests.TestBuilders
          _id = 100;
          _internalCustomer = new Customer(100)
          {
-            HomeAddress = new Address(),
+            HomeAddress = _addressBuilder.WithTestValues().Build(),
             FirstName = "Bob",
             LastName = "Smith",
             CreditRating = 650,
@@ -66,6 +66,12 @@ namespace BuilderTestSample.Tests.TestBuilders
       public CustomerBuilder Address(Address address)
       {
          _internalCustomer.HomeAddress = address;
+         return this;
+      }
+
+      public CustomerBuilder CreditRating(int creditRating)
+      {
+         _internalCustomer.CreditRating = creditRating;
          return this;
       }
    }

@@ -21,12 +21,40 @@ namespace BuilderTestSample.Tests.TestBuilders
       public AddressBuilder WithTestValues()
       {
          _internalAddress.Street1 = "123 Fake St.";
+         _internalAddress.City = "Cleveland";
+         _internalAddress.State = "Ohio";
+         _internalAddress.PostalCode = "44111";
+         _internalAddress.Country = "USA";
          return this;
       }
 
       public AddressBuilder Street1(string street1)
       {
          _internalAddress.Street1 = street1;
+         return this;
+      }
+
+      public AddressBuilder City(string city)
+      {
+         _internalAddress.City = city;
+         return this;
+      }
+
+      public AddressBuilder State(string state)
+      {
+         _internalAddress.State = state;
+         return this;
+      }
+
+      public AddressBuilder PostalCode(string postalCode)
+      {
+         _internalAddress.PostalCode = postalCode;
+         return this;
+      }
+
+      public AddressBuilder Country(string country)
+      {
+         _internalAddress.Country = country;
          return this;
       }
    }
