@@ -57,14 +57,16 @@ namespace BuilderTestSample.Services
 
       private void ExpediteOrder(Order order)
       {
-         // TODO: if customer's total purchases > 5000 and credit rating > 500 set IsExpedited to true
+        if(order.TotalAmount > 5000m && order.Customer.CreditRating > 500)
+         {
+            order.IsExpedited = true;
+         }
       }
 
       private void AddOrderToCustomerHistory(Order order)
       {
-         // TODO: add the order to the customer
-
-         // TODO: update the customer's total purchases property
+         order.Customer.OrderHistory.Add(order);
+         order.Customer.TotalPurchases += order.TotalAmount;
       }
    }
 }
